@@ -1,1 +1,1 @@
-# kurtosis-cloud-catalog
+# Kurtosis Cloud Catalog

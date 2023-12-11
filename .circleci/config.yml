@@ -1,0 +1,164 @@
+version: 2.1
+
+orbs:
+  aws-ecr: circleci/aws-ecr@9.0
+  aws-cli: circleci/aws-cli@4.0
+  aws-ecs: circleci/aws-ecs@4.0
+
+parameters:
+  node-image-version:
+    type: string
+    default: "18.18.0" # this is the latest LTS image release at the time of writing
+
+executors:
+  ubuntu_vm:
+    machine:
+      image: ubuntu-2004:202201-02
+
+# NOTE: Because CircleCI jobs run on separate machines from each other, we duplicate steps (like checkout) between jobs. This is because doing the "correct" DRY
+#  refactoring of, "one job for checkout, one job for build Docker image, etc." would require a) persisting files between jobs and b) persisting Docker images between
+#  jobs. Both are annoying (saving/loading workspaces require re-downloading the workspace over the network, and there doesn't seem to be a good way to do Docker
+#  images), so we run everything inside a single job.
+# See also: https://discuss.circleci.com/t/can-docker-images-be-preserved-between-jobs-in-a-workflow-without-a-manual-load-save/23388/12
+jobs:
+  build_app:
+    docker:
+      - image: "node:<< pipeline.parameters.node-image-version>>"
+    working_directory: /home/circleci/workspace
+    steps:
+      - checkout
+
+      - run: |
+          app/scripts/build.sh
+
+      - persist_to_workspace:
+          root: /home/circleci/workspace
+          paths:
+            - app/build/
+
+  build_api:
+    docker:
+      - image: "node:<< pipeline.parameters.node-image-version>>"
+    working_directory: /home/circleci/workspace
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: ./
+
+      - run: |
+          api/scripts/build.sh
+
+      - persist_to_workspace:
+          root: /home/circleci/workspace
+          paths:
+            - app/build/
+            - api/build/
+            - api/node_modules/
+
+  build_cloud_frontend_image_dry_run:
+    executor: ubuntu_vm
+    working_directory: /home/circleci/workspace
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - aws-ecr/build_and_push_image:
+          auth:
+            - aws-cli/setup:
+                aws_access_key_id: AWS_ACCESS_KEY_ID
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY
+          create_repo: false
+          dockerfile: Dockerfile
+          path: ./
+          platform: linux/amd64
+          push_image: false
+          region: us-east-1
+          repo: kurtosistech/kurtosis-cloud-catalog
+          tag: dev # Use something != than 'latest' here, even though we don't push the image, better safe tn sorry
+
+  build_cloud_frontend_image:
+    executor: ubuntu_vm
+    working_directory: /home/circleci/workspace
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - aws-ecr/build_and_push_image:
+          auth:
+            - aws-cli/setup:
+                aws_access_key_id: AWS_ACCESS_KEY_ID
+                aws_secret_access_key: AWS_SECRET_ACCESS_KEY
+          create_repo: false
+          dockerfile: Dockerfile
+          path: ./
+          platform: linux/amd64
+          push_image: true
+          region: us-east-1
+          repo: kurtosistech/kurtosis-cloud-catalog
+          tag: latest,${CIRCLE_TAG}
+
+  deploy_kurtosis_cloud_frontend:
+    executor: ubuntu_vm
+    steps:
+      - checkout
+
+      - aws-cli/setup:
+          aws_access_key_id: AWS_ACCESS_KEY_ID
+          aws_secret_access_key: AWS_SECRET_ACCESS_KEY
+
+      - aws-ecs/update_service:
+          cluster: kurtosis-cloud
+          family: kurtosis-cloud-app
+          service_name: kurtosis-cloud-catalog
+          force_new_deployment: true
+          skip_task_definition_registration: true
+
+workflows:
+  build:
+    jobs:
+      - build_app:
+          filters:
+            branches:
+              ignore:
+                - main
+            tags:
+              only: /^[0-9]+\.[0-9]+\.[0-9]+$/
+      - build_api:
+          requires:
+            - build_app
+          filters:
+            branches:
+              ignore:
+                - main
+            tags:
+              only: /^[0-9]+\.[0-9]+\.[0-9]+$/
+      - build_image_dry_run:
+          context:
+            - aws-user
+          requires:
+            - build_api
+          filters:
+            branches:
+              ignore:
+                - main
+      - build_image:
+          context:
+            - aws-user
+          requires:
+            - build_api
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^[0-9]+\.[0-9]+\.[0-9]+$/
+      - deploy:
+          context:
+            - aws-terraform-user
+          requires:
+            - build_image
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^[0-9]+\.[0-9]+\.[0-9]+$/
