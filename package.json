@@ -1,0 +1,77 @@
+{
+  "name": "catalog-ui",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "/",
+  "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/react": "^2.8.1",
+    "@bufbuild/protobuf": "^1.5.1",
+    "@connectrpc/connect": "^0.13.0",
+    "@connectrpc/connect-web": "^0.13.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@monaco-editor/react": "^4.6.0",
+    "@tanstack/react-table": "^8.10.7",
+    "ansi-to-html": "^0.7.2",
+    "framer-motion": "^10.16.4",
+    "html-react-parser": "^4.2.2",
+    "js-cookie": "^3.0.5",
+    "lodash": "^4.17.21",
+    "luxon": "^3.4.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.47.0",
+    "react-icons": "^4.11.0",
+    "react-markdown": "^9.0.0",
+    "react-router-dom": "^6.17.0",
+    "react-virtuoso": "^4.6.2",
+    "streamsaver": "^2.0.6",
+    "true-myth": "^7.1.0",
+    "yaml": "^2.3.4"
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
+    "@types/luxon": "^3.3.3",
+    "@types/node": "^16.7.13",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/streamsaver": "^2.0.4",
+    "dotenv-cli": "^6.0.0",
+    "monaco-editor": "^0.44.0",
+    "prettier": "3.0.3",
+    "prettier-plugin-organize-imports": "^3.2.3",
+    "react-scripts": "5.0.1",
+    "serve": "^14.2.1",
+    "source-map-explorer": "^2.5.3",
+    "typescript": "^4.4.2"
+  },
+  "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "clean": "rm -rf build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "prettier": "prettier . --check",
+    "prettier:fix": "prettier . --write",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
