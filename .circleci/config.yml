@@ -89,7 +89,7 @@ jobs:
 
       - aws-ecs/update_service:
           cluster: kurtosis-cloud
-          family: kurtosis-cloud-app
+          family: kurtosis-cloud-catalog
           service_name: kurtosis-cloud-catalog
           force_new_deployment: true
           skip_task_definition_registration: true
