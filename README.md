@@ -1,4 +1,4 @@
-# kurtosis-cloud-catalog
+# Kurtosis Cloud Catalog
 
 This codebase produces the catalog UI served at [`catalog.kurtosis.com`](https://catalog.kurtosis.com).
 
