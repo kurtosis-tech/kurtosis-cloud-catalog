@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/kurtosis-tech/kurtosis-cloud-catalog/compare/1.0.0...1.0.1) (2023-12-12)
+
+
+### Bug Fixes
+
+* ecs family ([#11](https://github.com/kurtosis-tech/kurtosis-cloud-catalog/issues/11)) ([4d8da95](https://github.com/kurtosis-tech/kurtosis-cloud-catalog/commit/4d8da95bc6b11237a16650cdf759d935f8f51f65))
+
 ## 1.0.0 (2023-12-12)
 
 
