@@ -35,3 +35,4 @@ Your app is ready to be deployed!
 
 This application can be built as a docker container with `docker build -t catalog .`, and run locally with `docker run
 -p 3000:80 catalog` - which will make the application available on [http://localhost:3000](http://localhost:3000)
+
