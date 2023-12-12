@@ -1,6 +1,6 @@
 # kurtosis-cloud-catalog
 
-This codebase produces the catalog UI served at [`catalog.kurtosis.com`](https://catalog.kurtosis.com).
+This codebase produces the catalog UI served at [`catalog.kurtosis.com`](https://catalog.kurtosis.com). 
 
 ## Available Scripts
 
