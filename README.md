@@ -1,1 +1,0 @@
-# Kurtosis Cloud Catalog
