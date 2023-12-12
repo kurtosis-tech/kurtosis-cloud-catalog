@@ -116,7 +116,7 @@ jobs:
 workflows:
   build:
     jobs:
-      - build_app:
+      - build:
           filters:
             branches:
               ignore:
@@ -127,7 +127,7 @@ workflows:
           context:
             - aws-user
           requires:
-            - build_app
+            - build
           filters:
             branches:
               ignore:
@@ -136,7 +136,7 @@ workflows:
           context:
             - aws-user
           requires:
-            - build_app
+            - build
           filters:
             branches:
               ignore: /.*/
