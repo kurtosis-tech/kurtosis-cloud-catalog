@@ -1,5 +1,3 @@
-import { isDefined } from "../utils";
-
 // Configurable:
 export const KURTOSIS_CLOUD_PROTOCOL = "https";
 export const KURTOSIS_CLOUD_HOST = "cloud.kurtosis.com";
