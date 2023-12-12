@@ -21,7 +21,7 @@ executors:
 #  images), so we run everything inside a single job.
 # See also: https://discuss.circleci.com/t/can-docker-images-be-preserved-between-jobs-in-a-workflow-without-a-manual-load-save/23388/12
 jobs:
-  build_app:
+  build:
     docker:
       - image: "node:<< pipeline.parameters.node-image-version>>"
     working_directory: /home/circleci/workspace
@@ -36,26 +36,7 @@ jobs:
           paths:
             - build/
 
-  build_api:
-    docker:
-      - image: "node:<< pipeline.parameters.node-image-version>>"
-    working_directory: /home/circleci/workspace
-    steps:
-      - checkout
-
-      - attach_workspace:
-          at: ./
-
-      - run: |
-          api/scripts/build.sh
-
-      - persist_to_workspace:
-          root: /home/circleci/workspace
-          paths:
-            - build/
-            - node_modules/
-
-  build_cloud_frontend_image_dry_run:
+  build_image_dry_run:
     executor: ubuntu_vm
     working_directory: /home/circleci/workspace
     steps:
@@ -76,7 +57,7 @@ jobs:
           repo: kurtosistech/kurtosis-cloud-catalog
           tag: dev # Use something != than 'latest' here, even though we don't push the image, better safe tn sorry
 
-  build_cloud_frontend_image:
+  build_image:
     executor: ubuntu_vm
     working_directory: /home/circleci/workspace
     steps:
@@ -97,7 +78,7 @@ jobs:
           repo: kurtosistech/kurtosis-cloud-catalog
           tag: latest,${CIRCLE_TAG}
 
-  deploy_kurtosis_cloud_frontend:
+  deploy:
     executor: ubuntu_vm
     steps:
       - checkout
