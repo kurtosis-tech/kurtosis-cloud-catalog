@@ -4,9 +4,9 @@
   "private": true,
   "homepage": "/",
   "dependencies": {
+    "@bufbuild/protobuf": "^1.5.1",
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.1",
-    "@bufbuild/protobuf": "^1.5.1",
     "@connectrpc/connect": "^0.13.0",
     "@connectrpc/connect-web": "^0.13.0",
     "@emotion/react": "^11.11.1",
@@ -17,6 +17,7 @@
     "framer-motion": "^10.16.4",
     "html-react-parser": "^4.2.2",
     "js-cookie": "^3.0.5",
+    "kurtosis-ui-components": "^0.0.4",
     "lodash": "^4.17.21",
     "luxon": "^3.4.3",
     "react": "^18.2.0",

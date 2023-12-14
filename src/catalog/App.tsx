@@ -1,8 +1,7 @@
+import { AppLayout, KurtosisThemeProvider } from "kurtosis-ui-components";
 import { useMemo } from "react";
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from "react-router-dom";
 import { KurtosisPackageIndexerProvider } from "../client/packageIndexer/KurtosisPackageIndexerClientContext";
-import { AppLayout } from "../components/AppLayout";
-import { KurtosisThemeProvider } from "../components/KurtosisThemeProvider";
 import { CatalogContextProvider } from "./CatalogContext";
 import { catalogRoutes } from "./CatalogRoutes";
 
