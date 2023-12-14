@@ -1,19 +1,21 @@
 import { Box, Flex, Icon, Image, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
+import { KurtosisPackage } from "kurtosis-cloud-indexer-sdk";
+import {
+  AppPageLayout,
+  CopyButton,
+  FormatDateTime,
+  isDefined,
+  KurtosisAlert,
+  KurtosisMarkdown,
+  PackageSourceButton,
+  readablePackageName,
+  RunKurtosisPackageButton,
+  SaveKurtosisPackageButton,
+  TitledCard,
+} from "kurtosis-ui-components";
 import { DateTime } from "luxon";
 import { IoStar } from "react-icons/io5";
 import { useParams } from "react-router-dom";
-import { KurtosisPackage } from "../../client/packageIndexer/api/kurtosis_package_indexer_pb";
-import { AppPageLayout } from "../../components/AppLayout";
-import { readablePackageName } from "../../components/catalog/utils";
-import { RunKurtosisPackageButton } from "../../components/catalog/widgets/RunKurtosisPackageButton";
-import { SaveKurtosisPackageButton } from "../../components/catalog/widgets/SaveKurtosisPackageButton";
-import { CopyButton } from "../../components/CopyButton";
-import { FormatDateTime } from "../../components/FormatDateTime";
-import { KurtosisAlert } from "../../components/KurtosisAlert";
-import { KurtosisMarkdown } from "../../components/KurtosisMarkdown";
-import { PackageSourceButton } from "../../components/PackageSourceButton";
-import { TitledCard } from "../../components/TitledCard";
-import { isDefined } from "../../utils";
 import { useKurtosisPackage } from "../CatalogContext";
 
 export const Package = () => {

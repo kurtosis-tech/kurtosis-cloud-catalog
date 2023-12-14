@@ -9,16 +9,18 @@ import {
   InputLeftElement,
   InputRightElement,
 } from "@chakra-ui/react";
+import { GetPackagesResponse, KurtosisPackage } from "kurtosis-cloud-indexer-sdk";
+import {
+  AppPageLayout,
+  FindCommand,
+  isDefined,
+  KurtosisAlert,
+  KurtosisPackageCardGrid,
+  PageTitle,
+  useKeyboardAction,
+} from "kurtosis-ui-components";
 import { useMemo, useRef, useState } from "react";
 import { FiSearch } from "react-icons/fi";
-import { GetPackagesResponse, KurtosisPackage } from "../client/packageIndexer/api/kurtosis_package_indexer_pb";
-import { AppPageLayout } from "../components/AppLayout";
-import { KurtosisPackageCardGrid } from "../components/catalog/KurtosisPackageCardGrid";
-import { FindCommand } from "../components/KeyboardCommands";
-import { KurtosisAlert } from "../components/KurtosisAlert";
-import { PageTitle } from "../components/PageTitle";
-import { useKeyboardAction } from "../components/useKeyboardAction";
-import { isDefined } from "../utils";
 import { useCatalogContext } from "./CatalogContext";
 
 export const Catalog = () => {
