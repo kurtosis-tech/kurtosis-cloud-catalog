@@ -7524,10 +7524,10 @@ kurtosis-cloud-indexer-sdk@^0.0.2:
   dependencies:
     "@bufbuild/protobuf" "^1.3.3"
 
-kurtosis-ui-components@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/kurtosis-ui-components/-/kurtosis-ui-components-0.0.4.tgz#c4fb4ada83b0189155e5885423d2cf58501f869a"
-  integrity sha512-l59DaZ0Czk9bZautbpV0b/jW64AmfpsH88b5mniSCx1rOtOvkPw/9jwGUwF6ucxnrhMQKvvAboLZ9GUejuxsMw==
+kurtosis-ui-components@0.85.55:
+  version "0.85.55"
+  resolved "https://registry.yarnpkg.com/kurtosis-ui-components/-/kurtosis-ui-components-0.85.55.tgz#88a2dc8220164becc00315c4aaab9e0e1ed8d6e3"
+  integrity sha512-PilL69kJ6ZknGDOnehSr03HbVv/l4vKZAtDdOWsHSk7MWDX4tB+WfoJvHfEreWs/CsagGUEYYaNWJok+UZt8iQ==
   dependencies:
     "@monaco-editor/react" "^4.6.0"
     "@tanstack/react-table" "^8.10.7"
