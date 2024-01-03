@@ -17,7 +17,7 @@
     "framer-motion": "^10.16.4",
     "html-react-parser": "^4.2.2",
     "js-cookie": "^3.0.5",
-    "kurtosis-ui-components": "^0.0.4",
+    "kurtosis-ui-components": "0.85.55",
     "lodash": "^4.17.21",
     "luxon": "^3.4.3",
     "react": "^18.2.0",
