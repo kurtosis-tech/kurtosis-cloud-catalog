@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/kurtosis-tech/kurtosis-cloud-catalog/compare/1.0.1...1.1.0) (2024-01-03)
+
+
+### Features
+
+* Update package and catalog pages to match designs ([#14](https://github.com/kurtosis-tech/kurtosis-cloud-catalog/issues/14)) ([fdabdf6](https://github.com/kurtosis-tech/kurtosis-cloud-catalog/commit/fdabdf601c4d1d3c831355aa1997e9118f942858))
+
 ## [1.0.1](https://github.com/kurtosis-tech/kurtosis-cloud-catalog/compare/1.0.0...1.0.1) (2023-12-12)
 
 
